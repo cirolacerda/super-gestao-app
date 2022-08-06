@@ -26,17 +26,22 @@ Route::get('/login', function(){
     return 'Login';
 });
 
-Route::get('/clientes', function(){
-    return 'Clientes';
+//Agrupando Rotas
+Route::prefix('/app')->group(function(){
+    Route::get('/clientes', function(){
+        return 'Clientes';
+    });
+
+    Route::get('/fornecedores', function(){
+        return 'Fornecedores';
+    });
+
+    Route::get('/produtos', function(){
+        return 'Produtos';
+    });
+
 });
 
-Route::get('/fornecedores', function(){
-    return 'Fornecedores';
-});
-
-Route::get('/produtos', function(){
-    return 'Produtos';
-});
 
 // Rota estudo expressao regular
 /*Route::get('/contato/{nome}/{categoria_id}',
