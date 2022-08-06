@@ -22,6 +22,22 @@ Route::get('/sobre-nos', [SobreNosController::class, 'sobreNos']);
 
 Route::get('/contato', [ContatoController::class, 'contato']);
 
+Route::get('/login', function(){
+    return 'Login';
+});
+
+Route::get('/clientes', function(){
+    return 'Clientes';
+});
+
+Route::get('/fornecedores', function(){
+    return 'Fornecedores';
+});
+
+Route::get('/produtos', function(){
+    return 'Produtos';
+});
+
 // Rota estudo expressao regular
 /*Route::get('/contato/{nome}/{categoria_id}',
     function(string $nome = "Desconhecido", int $categoria = 1) {
