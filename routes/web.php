@@ -22,8 +22,9 @@ Route::get('/sobre-nos', [SobreNosController::class, 'sobreNos']);
 
 Route::get('/contato', [ContatoController::class, 'contato']);
 
-Route::get('/contato/{nome}/{categoria_id}',
+// Rota estudo expressao regular
+/*Route::get('/contato/{nome}/{categoria_id}',
     function(string $nome = "Desconhecido", int $categoria = 1) {
         echo "Estamos aqui: $nome - $categoria";
     }
-)->where('nome','[A-Za-z]+')->where('categoria_id','[0-9]+');
+)->where('nome','[A-Za-z]+')->where('categoria_id','[0-9]+');*/
