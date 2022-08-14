@@ -42,6 +42,10 @@ Route::prefix('/app')->group(function(){
 
 });
 
+Route::fallback(function(){
+    echo 'A rota acessada não existe. <a href="'.route('site.index').'">Clique Aqui</a> para ir para página inicial';
+});
+
 
 // Rota estudo expressao regular
 /*Route::get('/contato/{nome}/{categoria_id}',
