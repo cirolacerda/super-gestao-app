@@ -12,7 +12,7 @@ class Fornecedor extends Model
 
     use SoftDeletes;
 
-    //para o laravel entender o nome da tabela (ele entenderia como fornecedors)
+    //para o laravel entender o nome da tabela (senao ele entenderia como fornecedors)
     protected $table = 'fornecedores';
 
     protected $fillable = ['nome', 'site', 'uf', 'email'];
