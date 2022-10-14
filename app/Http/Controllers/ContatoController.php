@@ -51,7 +51,20 @@ class ContatoController extends Controller
             'motivo_contatos_id' => 'required',
             'mensagem' => 'required'
 
-        ]);
+        ],
+        [
+            'nome.required' => 'O campo nome precisa ser preenchido',
+            'nome.min' => 'O campo nome precisa ter no mínimo 3 caracteres',
+            'nome.max' => 'O campo nome precisa ter no máximo 40 caracteres',
+            'nome.unique' => 'O nome informado já está em uso',
+            'telefone.required' => 'O campo telefone precisa ser preenchido',
+
+            'email.email' => 'O email informado não é válido',
+
+            'required' => 'O campo :attribute deve ser preenchido'
+        ]
+
+        );
 
         SiteContato::create($request->all());
         return redirect()->route('site.index');
