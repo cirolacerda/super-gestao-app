@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\FornecedorController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\SobreNosController;
@@ -25,9 +26,8 @@ Route::get('/contato', [ContatoController::class, 'contato'])->name('site.contat
 
 Route::post('/contato', [ContatoController::class, 'salvar'])->name('site.contato');
 
-Route::get('/login', function(){
-    return 'Login';
-})->name('site.login');
+Route::get('/login', [LoginController::class, 'index'])->name('site.login');
+Route::post('/login', [LoginController::class, 'autenticar'])->name('site.login');
 
 //Agrupando Rotas
 Route::prefix('/app')->group(function(){
