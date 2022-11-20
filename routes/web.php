@@ -48,7 +48,7 @@ Route::middleware('autenticacao')->prefix('/app')->group(function () {
     Route::get('/fornecedore/editar/{id}/{msg?}', [FornecedorController::class, 'editar'])->name('app.fornecedor.editar');
     Route::get('/fornecedore/excluir/{id}', [FornecedorController::class, 'excluir'])->name('app.fornecedor.excluir');
 
-    Route::get('/produto', [ProdutoController::class, 'index'])->name('app.produto');
+    Route::resource('produto', ProdutoController::class);
 });
 
 Route::fallback(function () {
