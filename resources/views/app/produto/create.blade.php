@@ -7,7 +7,13 @@
     <div class="conteudo-pagina">
 
         <div class="titulo-pagina-2">
-            <p>Produto - Adicionar</p>
+
+            @if (isset($produto->id))
+                <p>Editar Produto</p>
+            @else
+                <p>Adiconar Produto</p>
+            @endif
+
         </div>
 
         <div class="menu">
@@ -20,30 +26,43 @@
         <div class="informacao-pagina">
 
             <div style="width:30%; margin-left:auto; margin-right:auto; ">
-                <form action="{{ route('produto.store') }}" method="POST">
-                    @csrf
-                    <input type="text" name="nome" value="{{ old('nome') }}" placeholder="Nome" class="borda-preta">
-                    {{ $errors->has('nome') ? $errors->first('nome') : '' }}
+                @if (isset($produto->id))
+                    <form action="{{ route('produto.update', ['produto' => $produto->id]) }}" method="POST">
+                        @method('PUT')
+                    @else
+                        <form action="{{ route('produto.store') }}" method="POST">
+                @endif
+                @csrf
+                <input type="text" name="nome" value="{{ $produto->nome ?? old('nome') }}" placeholder="Nome"
+                    class="borda-preta">
+                {{ $errors->has('nome') ? $errors->first('nome') : '' }}
 
-                    <input type="text" name="descricao" value="{{ old('descricao') }}" placeholder="Descrição"
-                        class="borda-preta">
-                    {{ $errors->has('descricao') ? $errors->first('descricao') : '' }}
+                <input type="text" name="descricao" value="{{ $produto->descricao ?? old('descricao') }}"
+                    placeholder="Descrição" class="borda-preta">
+                {{ $errors->has('descricao') ? $errors->first('descricao') : '' }}
 
-                    <input type="text" name="peso" value="{{ old('peso') }}" placeholder="Peso" class="borda-preta">
-                    {{ $errors->has('peso') ? $errors->first('peso') : '' }}
+                <input type="text" name="peso" value="{{ $produto->peso ?? old('peso') }}" placeholder="Peso"
+                    class="borda-preta">
+                {{ $errors->has('peso') ? $errors->first('peso') : '' }}
 
-                    <select name="unidade_id" id="unidade_id">
-                        <option value="">Selecione a Unidade de Medida</option>
+                <select name="unidade_id" id="unidade_id">
+                    <option value="">Selecione a Unidade de Medida</option>
 
-                        @foreach ($unidades as $unidade)
-                            <option value="{{ $unidade->id }} {{ old('unidade_id') == $unidade->id ? 'selected' : '' }}">
-                                {{ $unidade->descricao }}</option>
-                        @endforeach
+                    @foreach ($unidades as $unidade)
+                        <option value="{{ $unidade->id }}"
+                            {{ ($produto->unidade_id ?? old('unidade_id')) == $unidade->id ? 'selected' : '' }}>
+                            {{ $unidade->descricao }}</option>
+                    @endforeach
 
-                    </select>
-                    {{ $errors->has('unidade_id') ? $errors->first('unidade_id') : '' }}
+                </select>
+                {{ $errors->has('unidade_id') ? $errors->first('unidade_id') : '' }}
 
+                @if (isset($produto->id))
+                    <button type="submit" class="borda-preta">Atualizar</button>
+                @else
                     <button type="submit" class="borda-preta">Cadastrar</button>
+                @endif
+
                 </form>
 
             </div>
