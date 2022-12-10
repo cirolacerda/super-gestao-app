@@ -5,6 +5,17 @@
         <form action="{{ route('produto.store') }}" method="POST">
 @endif
 @csrf
+<select name="fornecedor_id" id="fornecedor_id">
+    <option value="">Selecione um fornecedor</option>
+
+    @foreach ($fornecedores as $fornecedor)
+        <option value="{{ $fornecedor->id }}"
+            {{ ($produto->fornecedor_id ?? old('fornecedor_id')) == $fornecedor->id ? 'selected' : '' }}>
+            {{ $fornecedor->nome }}</option>
+    @endforeach
+
+</select>
+{{ $errors->has('fornecedor_id') ? $errors->first('fornecedor_id') : '' }}
 <input type="text" name="nome" value="{{ $produto->nome ?? old('nome') }}" placeholder="Nome" class="borda-preta">
 {{ $errors->has('nome') ? $errors->first('nome') : '' }}
 
@@ -12,7 +23,8 @@
     class="borda-preta">
 {{ $errors->has('descricao') ? $errors->first('descricao') : '' }}
 
-<input type="text" name="peso" value="{{ $produto->peso ?? old('peso') }}" placeholder="Peso" class="borda-preta">
+<input type="text" name="peso" value="{{ $produto->peso ?? old('peso') }}" placeholder="Peso"
+    class="borda-preta">
 {{ $errors->has('peso') ? $errors->first('peso') : '' }}
 
 <select name="unidade_id" id="unidade_id">
