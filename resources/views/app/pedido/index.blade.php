@@ -27,6 +27,7 @@
                             <th></th>
                             <th></th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
 
@@ -35,6 +36,8 @@
                             <tr>
                                 <td>{{ $pedido->id }}</td>
                                 <td>{{ $pedido->cliente_id }}</td>
+                                <td><a href="{{ route('pedido-produto.create', ['pedido' => $pedido->id]) }}">Adicionar
+                                        Produtos</a></td>
                                 <td><a href="{{ route('pedido.show', ['pedido' => $pedido->id]) }}">Visualizar</a></td>
                                 <td><a href="{{ route('pedido.edit', ['pedido' => $pedido->id]) }}">Editar</a></td>
                                 <td>
@@ -54,11 +57,11 @@
 
                 {{ $pedidos->appends($request)->links('pagination::bootstrap-4') }}
                 <!--
-                                                                                                        <br>
-                                                                                                        {{ $pedidos->count() }} - Total de registros por página
-                                                                                                        <br>
-                                                                                                        {{ $pedidos->total() }} - Total de registros da consulta
-                                                                                                        -->
+                                                                                                                        <br>
+                                                                                                                        {{ $pedidos->count() }} - Total de registros por página
+                                                                                                                        <br>
+                                                                                                                        {{ $pedidos->total() }} - Total de registros da consulta
+                                                                                                                        -->
                 <br>
                 Exibindo {{ $pedidos->count() }} pedido(s) de {{ $pedidos->total() }} (de {{ $pedidos->firstItem() }}
                 a {{ $pedidos->lastItem() }})
