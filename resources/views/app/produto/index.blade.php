@@ -61,6 +61,19 @@
                                 </td>
                                 </form>
                             </tr>
+
+                            <tr>
+                                <td colspan="12">
+                                    <p>Pedido(s)</p>
+
+                                    @foreach ($produto->pedidos as $pedido)
+                                        <a href="{{ route('pedido-produto.create', ['pedido' => $pedido->id]) }}">
+                                            Pedido: {{ $pedido->id }},
+                                        </a>
+                                    @endforeach
+
+                                </td>
+                            </tr>
                         @endforeach
 
                     </tbody>
@@ -68,11 +81,11 @@
 
                 {{ $produtos->appends($request)->links('pagination::bootstrap-4') }}
                 <!--
-                                                            <br>
-                                                            {{ $produtos->count() }} - Total de registros por página
-                                                            <br>
-                                                            {{ $produtos->total() }} - Total de registros da consulta
-                                                            -->
+                                                                                                <br>
+                                                                                                {{ $produtos->count() }} - Total de registros por página
+                                                                                                <br>
+                                                                                                {{ $produtos->total() }} - Total de registros da consulta
+                                                                                                -->
                 <br>
                 Exibindo {{ $produtos->count() }} produto(s) de {{ $produtos->total() }} (de {{ $produtos->firstItem() }}
                 a {{ $produtos->lastItem() }})
